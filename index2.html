@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spark Beverage Indonesia</title>
+
+<style>
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+body{
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e293b,
+        #334155,
+        #475569
+    );
+    color:white;
+    overflow-x:hidden;
+    padding-top:90px;
+}
+
+/* NAV */
+nav {
+    display:flex;
+    justify-content:space-between;
+    padding:20px 60px;
+
+    background:black;
+
+    border-bottom:2px solid #334155;
+    box-shadow:0 4px 12px rgba(0,0,0,0.3);
+
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+}
+
+nav img {
+    width:60px;
+}
+
+nav ul {
+    display:flex;
+    gap:30px;
+    list-style:none;
+}
+
+nav a {
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+nav a:hover {
+    color:#38bdf8;
+}
+
+/* HERO */
+.hero {
+    position:relative;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:80px 60px;
+
+    background:linear-gradient(
+        90deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+
+    overflow:hidden;
+    color:white;
+}
+
+.hero h1 {
+    font-size:60px;
+}
+
+.hero-img img {
+    width:280px;
+    animation:float 3s infinite;
+}
+
+/* BUBBLE EFFECT */
+.bubble {
+    position:absolute;
+    bottom:-50px;
+    width:15px;
+    height:15px;
+    background:rgba(255,255,255,0.4);
+    border-radius:50%;
+    animation:rise 6s infinite ease-in;
+}
+
+.bubble:nth-child(1){left:10%;animation-duration:5s;}
+.bubble:nth-child(2){left:30%;animation-duration:7s;}
+.bubble:nth-child(3){left:50%;animation-duration:6s;}
+.bubble:nth-child(4){left:70%;animation-duration:8s;}
+.bubble:nth-child(5){left:90%;animation-duration:5s;}
+
+@keyframes rise {
+    0% {
+        transform:translateY(0) scale(1);
+        opacity:0.5;
+    }
+    100% {
+        transform:translateY(-600px) scale(1.5);
+        opacity:0;
+    }
+}
+
+/* BUTTON */
+.btn {
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#2563eb;
+    border-radius:30px;
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#3b82f6;
+    transform:scale(1.05);
+}
+
+/* PRODUK */
+.products {
+    padding:60px;
+    text-align:center;
+}
+
+.products h2{
+    margin-bottom:30px;
+    font-size:40px;
+}
+
+.product-list {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.card {
+    background:#1e293b;
+    padding:20px;
+    border-radius:25px;
+
+    border:2px solid #334155;
+
+    transition:0.3s;
+
+    box-shadow:none;
+}
+
+.card:hover {
+    transform:translateY(-8px);
+    box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.card img {
+    width:100%;
+    height:180px;
+    object-fit:contain;
+}
+
+.card h3{
+    margin-top:10px;
+    color:#38bdf8;
+}
+
+/* ABOUT */
+.about {
+    padding:60px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+}
+
+.about-box {
+    padding:30px;
+    border-radius:25px;
+
+    background:linear-gradient(
+        135deg,
+        #1e3a8a,
+        #2563eb
+    );
+
+    color:white;
+
+    box-shadow:none;
+}
+
+/* VISI */
+.visi {
+    padding:60px;
+    text-align:center;
+}
+
+.visi h2{
+    font-size:40px;
+}
+
+.visi-container {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+    margin-top:30px;
+}
+
+.visi-box {
+    padding:30px;
+    border-radius:25px;
+
+    background:linear-gradient(
+        135deg,
+        #1e3a8a,
+        #2563eb
+    );
+
+    color:white;
+
+    border:none;
+
+    transition:0.3s;
+
+    box-shadow:none;
+}
+
+.visi-box:hover {
+    transform:none;
+    box-shadow:none;
+}
+
+/* KONTAK */
+.contact {
+    padding:60px;
+    text-align:center;
+
+    background:linear-gradient(
+        135deg,
+        #0f172a,
+        #1e3a8a,
+        #2563eb
+    );
+
+    color:white;
+}
+
+.contact h2 {
+    margin-bottom:30px;
+    font-size:40px;
+}
+
+.contact-box {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+}
+
+.contact-card {
+    padding:25px;
+    border-radius:25px;
+
+    background:#1e293b;
+
+    color:white;
+
+    transition:0.3s;
+
+    box-shadow:none;
+
+    border:2px solid #334155;
+}
+
+.contact-card:hover {
+    transform:translateY(-8px);
+}
+
+.contact-card h3 {
+    margin-bottom:10px;
+    color:#38bdf8;
+}
+
+.contact-card a{
+    color:white;
+    text-decoration:none;
+}
+
+/* FOOTER */
+footer {
+    text-align:center;
+    padding:20px;
+
+    background:black;
+
+    color:white;
+}
+
+/* ANIMASI */
+.fade {
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s;
+}
+
+.show {
+    opacity:1;
+    transform:translateY(0);
+}
+
+@keyframes float {
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-15px);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav>
+    <img src="src/gambar/spark/logo spark.png">
+
+    <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+    </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero fade">
+
+    <div>
+        <h1>SPARK SODA</h1>
+
+        <p>Rasakan ledakan kesegaran dalam setiap tegukan.</p>
+        <p>Spark menghadirkan minuman bersoda dengan rasa unik, segar,</p>
+        <p>dan tak terlupakan—siap menemani setiap momen harimu.</p>
+
+        <a href="#produk" class="btn">Lihat Produk</a>
+    </div>
+
+    <div class="hero-img">
+        <img src="src/gambar/spark all variants/all variants spark.png">
+    </div>
+
+    <!-- BUBBLE -->
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+</section>
+
+<!-- PRODUK -->
+<section class="products fade" id="produk">
+
+    <h2>Produk Kami</h2>
+
+    <div class="product-list">
+
+        <div class="card">
+            <img src="src/gambar/cola/spark cola.png">
+            <h3>Spark Cola</h3>
+            <p>Rasa cola klasik yang kuat dan segar.</p>
+        </div>
+
+        <div class="card">
+            <img src="src/gambar/orange/spark orange.png">
+            <h3>Spark Orange</h3>
+            <p>Perpaduan manis dan asam jeruk yang segar.</p>
+        </div>
+
+        <div class="card">
+            <img src="src/gambar/lemon lime/spark lemon.png">
+            <h3>Spark Lemon Lime</h3>
+            <p>Kombinasi lemon dan lime yang tajam dan menyegarkan.</p>
+        </div>
+
+        <div class="card">
+            <img src="src/gambar/fruit/spark fruit.png">
+            <h3>Spark Fruit Soda</h3>
+            <p>Sensasi soda buah yang ringan dan modern.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about fade" id="about">
+
+    <div class="about-box">
+        <h2>Tentang Perusahaan</h2>
+
+        <p>PT Spark Beverage Indonesia berdiri pada tahun 2026.</p>
+        <p>Perusahaan ini berfokus pada pengembangan minuman bersoda</p>
+        <p>inovatif, berkualitas, dan mampu memenuhi kebutuhan konsumen.</p>
+    </div>
+
+    <div class="about-box">
+        <h2>Bidang Bisnis</h2>
+
+        <ul>
+            <li>Produksi dan distribusi minuman bersoda</li>
+            <li>Pengembangan produk minuman dengan rasa inovatif</li>
+            <li>Pengemasan produk yang modern, aman, dan menarik</li>
+        </ul>
+    </div>
+
+</section>
+
+<!-- VISI -->
+<section class="visi fade">
+
+    <h2>Visi & Misi</h2>
+
+    <div class="visi-container">
+
+        <div class="visi-box">
+            <h3>Visi</h3>
+
+            <p>
+                Menjadi perusahaan minuman bersoda yang unggul,
+                inovatif, terpercaya di Indonesia serta mampu
+                bersaing di pasar nasional.
+            </p>
+        </div>
+
+        <div class="visi-box">
+            <h3>Misi</h3>
+
+            <ul>
+                <li>Menjaga kepuasan pelanggan melalui produk dan pelayanan terbaik.</li>
+                <li>Menghadirkan inovasi rasa yang segar dan sesuai selera.</li>
+                <li>Mengembangkan usaha secara berkelanjutan dan bertanggung jawab.</li>
+                <li>Berkontribusi bagi perekonomian dan industri minuman Indonesia.</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- KONTAK -->
+<section class="contact fade">
+
+    <h2>Contact Us</h2>
+
+    <div class="contact-box" id="kontak">
+
+        <div class="contact-card">
+            <h3>📧 Email</h3>
+            <p>kelompok1jaya2026@gmail.com</p>
+        </div>
+
+        <a href="https://wa.me/62895424484719"
+        target="_blank"
+        style="text-decoration:none;">
+
+            <div class="contact-card">
+                <h3>📱 WhatsApp</h3>
+                <p style="color:white;">+62 895-4244-84719</p>
+                
+            </div>
+
+        </a>
+
+        <a href="https://www.instagram.com/nanaii_ara?igsh=c2l6Zms0eHI2ZGM1"
+        target="_blank"
+        style="text-decoration:none;">
+
+            <div class="contact-card">
+                <h3>📸 Instagram</h3>
+                <p style="color:white;">@nanaii_ara</p>
+                <p style="color:white;"></p>
+            </div>
+
+        </a>
+
+        <div class="contact-card">
+            <h3>📍 Lokasi</h3>
+            <p>Bandung, Jawa Barat</p>
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 PT Spark Beverage Indonesia</p>
+</footer>
+
+<script>
+const elements = document.querySelectorAll('.fade');
+
+window.addEventListener('scroll', () => {
+    elements.forEach(el => {
+        if(el.getBoundingClientRect().top < window.innerHeight - 100){
+            el.classList.add('show');
+        }
+    });
+});
+
+window.onload = () => {
+    elements.forEach(el => {
+        setTimeout(() => el.classList.add('show'), 200);
+    });
+};
+</script>
+
+</body>
+</html>
